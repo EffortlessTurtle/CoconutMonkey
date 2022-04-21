@@ -44,8 +44,8 @@ def POBox():    #Determines TARGET
     Kicks an error and a 'do it again' message if destination target isn't legit. TODO: I need to make this a path plus a folder
     This will necessitate a mkdir and something else in Motor() for loop."""
     #Shows defauld path
-    #dest = dirname(abspath(__file__))  #finds dir and abs path to file's parent
-    dest = os.path.join('/home/nate/Desktop/', 'Anaconda Projects/testFire')
+   
+    dest = os.path.join('<target>', 'Anaconda Projects/testFire')
     print()
     print('Current target: ' + str(dest))
     choices = ('y', 'n', 'q', 'h')
@@ -87,7 +87,7 @@ def MailRoom():     #Determine SOURCE
     This then validates paths given by user, the returns the Source Directory path
     """
     #src = dirname(abspath(__file__))
-    src = os.path.join('/home/nate/','Desktop/BioWare')
+    src = os.path.join('<target>','<target>')
     print('current source is: ' + str(src))
     confirm = input('Pull files from here? Y/N/Q: ')
     choices = ('y', 'n', 'q', 'h', '') #Tuple used to make choices a bit smoother
@@ -138,35 +138,17 @@ def Mover():    #moves files
         print(str(src) + ' <- src, Mover()\n') #NOTE: signpost
         print(src)
         for files in os.walk((os.path.normpath(src)), topdown=False):
-            #print('files in path [for] loop') #NOTE: signpost
+
             i = 0
             print()
-            #print(str(root) + ' <- root') #NOTE: signpost
-            #print(str(dirs) + ' <- dirs') #NOTE: signpost
+
             for names in files:
                 for name in names:
-                    #print(files) #NOTE: signpost
-                    #print('name in files [for] loop') #NOTE: signpost
-                    #print(name)  #Type: str #NOTE: signpost
+       
                     print(str(i) + ' <- mover i')
-                    #tarname = name
-                    #try:
-                    #    pp = ppp(name).suffix
-                    ##print(str(pp) + ' <- pp output') #outputs 
-                    ##print(str(type(pp)) + ' <- pp type')
-                    #except TypeError as TE:
-                    #    
-                    #    if pp == None or '' or ' ':
-                    #        
-                    #        t_ext = '.txt'
-                    #        tarname = name.append(t_ext)
-                    #print(str(pp2) + ' <- pp2')
-                    #print(str(os.path.splitext(pp2)) + ' <- pp2 splitext')    
-                    #file__ext_check = os.path.splitext(name)
-                    #print(elliot)
+                  
                     i = i + 1
-                    #name2 = str(name)
-                    #name = pth_join
+
                     
                     SourceFolder = os.path.join(src, str(name))      # NOTE: SOURCE PATH
                     TargFolder = os.path.join(dest, str(name))      # NOTE: TARGET PATH
@@ -313,12 +295,7 @@ def Motor(): #copies files
             'p', 'q', 'r', 's', 't',
             'u', 'v', 'w', 'x', 'y','z'
         ] 
-        #srcList = list(os.walk(src))
-        #srcList = os.listdir(src)
-        #print(srcList) # type = list
-        #print(str(type(dest)))
-        #RootDir1 = r'*your directory*'
-        #TargetFolder = r'*your target folder*'
+        
         for root, dirs, files in os.walk((os.path.normpath(src)), topdown=False):
             i = 0
             log_count = 0
@@ -329,25 +306,15 @@ def Motor(): #copies files
                 name2 = str(name)
                 try:
                     SourceFolder = os.path.join(root, name2)      # NOTE: SOURCE PATH
-                    TargFolder = os.path.join(dest, name2)    # NOTE: TARGET PATH
-                    #print(SourceFolder + ' <- SourceFolder') #NOTE:Signpost, Mark for delete
-                    #print(TargFolder + ' <- TargFolder') #NOTE:Signpost, Mark for delete
-                    NameCheck = os.path.lexists(TargFolder)
-                   # print(str(NameCheck) + ' <-NameCheck variable')        #Throws true if filename is already in target #NOTE:Signpost, Mark for delete
+                    TargFolder = os.path.join(dest, name2)    # NOTE: TARGET PATH                    
+                    NameCheck = os.path.lexists(TargFolder)                 
                     if NameCheck == True:
                         Splitter = os.path.splitext(TargFolder) #Splits text for editing, gives tuple output (<path>)
                         spl_list = list(Splitter)  #OUTPUT: ['/home/nate/Desktop/Targ/systeminformation', '.xml']
-                        fil_nm = spl_list[0]
-                        #print(spl_list)  #NOTE:Signpost
-                        #print('/\ spl_list') #NOTE: signpost
-                        #fixed_name = str(spl_list[0] + spl_list[1])  #OUTPUT: /home/nate/Desktop/Targ/systeminformation.xml
-                        #print('\/ fixed_name')  #NOTE: signpost
-                        #print(fixed_name) #NOTE: signpost
+                        fil_nm = spl_list[0]    
                         shutil.copy2(SourceFolder, TargFolder)
                         print(str(SourceFolder) + '  >  ' + str(TargFolder))
                     else:
-                        #shutil.copy2(SourceFolder, dest)            #copies files to new folder
-                        #This will iterate through 'shutil.SameFileError's until file name : 'filename_<num><num><letter>.ext'
                         try:
                             Splitter = os.path.splitext(TargFolder) #Splits text for editing, gives tuple output (<path>)
                             spl_list = list(Splitter)  #OUTPUT: ['/home/nate/Desktop/Targ/systeminformation', '.xml']
@@ -476,45 +443,6 @@ def Main():
 #      to make a class for the move and copy functions or to consolidate a lot 
 #      or if I need to do something else. 22MAR2022-1622
 #  
-#  output:
-#        
-#      main
-#      Coconut monkey
-#      Made by a weirdo in a garage-sized apartment
-#      <Enter> to continue / H for help / S for settings / Q to quit: 
-#      Mover
-#      current source is: /home/nate/Desktop/BioWare
-#      Pull files from here? Y/N/Q: y
-#      Source: /home/nate/Desktop/BioWare
-#      
-#      Current target: /home/nate/Desktop/Anaconda Projects/testFire
-#      Send somewhere else? Y/N or Q to exit: n
-#      /home/nate/Desktop/Anaconda Projects/testFire
-#      /home/nate/Desktop/Anaconda Projects/testFire
-#      /home/nate/Desktop/BioWare
-#      
-#      0 <- mover i
-#      / <- Source Folder PATH  <-   #NOTE: right here is the issue
-#      / <- Targ Folder PATH    <-   #NOTE: right here is the issue
-#      Traceback (most recent call last):
-#        File "/home/nate/Desktop/Anaconda Projects/CoconutMonkey/Coconut_monkey_it6", line 491, in <module>
-#          Main()
-#        File "/home/nate/Desktop/Anaconda Projects/CoconutMonkey/Coconut_monkey_it6", line 461, in Main
-#          Mover()
-#        File "/home/nate/Desktop/Anaconda Projects/CoconutMonkey/Coconut_monkey_it6", line 194, in Mover
-#          shutil.move(SourceFolder, TargFolder) #edit: TargFolder
-#        File "/home/nate/anaconda3/lib/python3.7/shutil.py", line 559, in move
-#          os.rename(src, dst)
-#      OSError: [Errno 16] Device or resource busy: '/' -> '/'
-#      ERROR conda.cli.main_run:execute(41): `conda run python /home/nate/Desktop/Anaconda Projects/CoconutMonkey/Coconut_monkey_it6` failed. (See above for error)
-#   
-#   
-
-
-
-
-
-
 
 
 """---Running parts---"""
