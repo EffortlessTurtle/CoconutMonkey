@@ -163,7 +163,7 @@ def Mover():    #moves files
                         # print(str(NameCheck) + ' <-NameCheck variable')        #Throws true if filename is already in target #NOTE:Signpost, Mark for delete
                         if NameCheck == True:
                             Splitter = os.path.splitext(TargFolder) #Splits text for editing, gives tuple output (<path>)
-                            spl_list = list(Splitter)  #OUTPUT: ['/home/nate/Desktop/Targ/systeminformation', '.xml']
+                            spl_list = list(Splitter)  
                             fil_nm = spl_list[0]
                             shutil.move(SourceFolder, TargFolder) #edit: TargFolder
                             print(str(SourceFolder) + '  >  ' + TargFolder)    
@@ -310,14 +310,14 @@ def Motor(): #copies files
                     NameCheck = os.path.lexists(TargFolder)                 
                     if NameCheck == True:
                         Splitter = os.path.splitext(TargFolder) #Splits text for editing, gives tuple output (<path>)
-                        spl_list = list(Splitter)  #OUTPUT: ['/home/nate/Desktop/Targ/systeminformation', '.xml']
+                        spl_list = list(Splitter)  
                         fil_nm = spl_list[0]    
                         shutil.copy2(SourceFolder, TargFolder)
                         print(str(SourceFolder) + '  >  ' + str(TargFolder))
                     else:
                         try:
                             Splitter = os.path.splitext(TargFolder) #Splits text for editing, gives tuple output (<path>)
-                            spl_list = list(Splitter)  #OUTPUT: ['/home/nate/Desktop/Targ/systeminformation', '.xml']
+                            spl_list = list(Splitter)  
                             fil_nm = spl_list[0]
                             try_name_1 = str(fil_nm) + '_' + str(logic_list[log_count]) # 'filename_<num>.ext'
                             fil_nm = try_name_1
