@@ -187,6 +187,7 @@ def Main():    #Shows intro, eventually allows for settings
             elif start.lower() == choices[1]:
                 #if user chooses h
                 print("--- Help section under Construction---")
+                continue
                 
             elif start.lower() == choices[3]:
                 #if user chooses q
@@ -196,8 +197,9 @@ def Main():    #Shows intro, eventually allows for settings
             elif start.lower() == choices[2]:
                 #if user chooses S
                 print("--- Settings under construction---")    
+                continue
                 #could I do some wizardry with a number somewhere? maybe an list index?
-        else:
+        else:  #safety mechanism, leftover from early in development. Kept b/c it's a good idea
             print("That isn't a valid response")
             i += 1
             
