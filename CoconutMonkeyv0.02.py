@@ -1,9 +1,11 @@
-#       <CoconutMonkey, Recursive file consolidator, v0.01,Github,EffortlessTurtle>
+#       <CoconutMonkey, Recursive file consolidator, v0.02,Github,EffortlessTurtle>
 
 
 #This is a python language CLI port for a program I wrote in C# (https://github.com/EffortlessTurtle/Wanorexia)
 #This is supposed to walk down to the bottom of a file tree and recursively
 #Move the files to the containing pathway OR a target directory
+
+# v0.02, this one has a different for loop setup in the Motor() For loop
 
 #Imports
 
@@ -18,7 +20,6 @@ from os.path import abspath, dirname
 def POBox():    #Determines destination
     """Takes input from user for destination folder. Then tests to ensure the destination is a legitimate path. 
     Kicks an error and a 'do it again' message if destination target isn't legit."""
-    
     #Shows default path
     dest = dirname(abspath(__file__))
     print()
@@ -67,9 +68,10 @@ def MailRoom():     #Determine Target
             return src
         elif confirm.lower() == choices[1]:
             #If user chooses N
+
             while True: #Loop for user to amend SOURCE folder 
                 correction = input('Please enter new source (path): ')
-                #NOTE: LOGIC ERROR: Valid paths not considered valid               
+                #NOTE: LOGIC ERROR: Valid paths not considered valid              
                 correction_valid_check = os.path.lexists(correction)
                 if correction_valid_check == True:
                     #If the new path to target is valid return that correction
@@ -100,15 +102,40 @@ def Motor():
     while True: #Loop for multiple targets
         src = MailRoom()
         dest = POBox()
-        srcList = list(os.walk(src))
-        print(srcList) # type = list
-        for file in srcList: #18MAR2022: For now this copies the whole file structure
-           # print(file)
-            full_file =  os.path(file) + file
-            print(full_file)
-            shutil.move(file, dest, copy_function = shutil.copy(full_file, dest))
-            print(file, dest)
-            
+        print(type(dest))
+        for root, dirs, files in os.walk((os.path.normpath(src)), topdown=False):
+            for name in files:
+                i = 0
+                i = i + 1
+                try:
+                    SourceFolder = os.path.join(root,name)      #Makes path for computer to digest
+                    SourceFolder2 = os.path.join(dest, name)    #Full path of file after move, needed for logic
+                    print(SourceFolder + ' <- SourceFolder')
+                    print(SourceFolder2 + ' <- SourceFolder2')
+                    NameCheck = os.path.exists(SourceFolder2)
+                    print(str(NameCheck) + ' <-NameCheck variable')        #Throws true if filename is already in target
+                    if NameCheck == True:
+                        Splitter = os.path.splitext(SourceFolder2) #Splits text for editing, gives tuple
+                        spl_list = list(Splitter)
+                        print('')
+                        print('splitter list')
+                        print(spl_list)
+                        spl_list[0] = spl_list[0] + '_' + str(i)    #add _number at end of file name
+                        fixer = spl_list[0:-1]
+                        print(str(fixer) + " <- Fixer")
+                        print(str(type(fixer)) + '<- Fixer Type')
+                        fixed_name = str(spl_list[0] + spl_list[1])     
+                        print(str(fixed_name) + ' <-fixed_name Variable')
+                        shutil.copy2(SourceFolder, fixed_name)
+                        i = i + 1
+                    else:
+                        shutil.copy2(SourceFolder, dest)            #copies files to new folder
+                        i = i + 1
+                except shutil.SameFileError as e:                    #I may not need this, but exception handling never hurts
+                    print(e)               #NOTE:Signpost, Mark for delete
+                    i = i + 1
+                    pass 
+
         choice = ('y', 'n')
         print('sent to ' + str(dest))
         again = input('again? Y/N ') #Determine if user wants to do it again
@@ -123,17 +150,5 @@ def Motor():
         
     
 Motor()
-        
 
-        
-    
-    
-    
-    
-
-    
-    
-    
-
-    
-  
+      
