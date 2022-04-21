@@ -169,9 +169,9 @@ def Mover():    #moves files
         
 def Main():    #Shows intro, eventually allows for settings
     
-    print('\t'*4 +"---Coconut monkey---")
+    print('\t'*4 +"---Coconut Monkey v1.0---")
     print('\n'*2)
-    print('\t'*2 +"---Made by a weirdo in a garage-sized apartment---" + '\n' *3)
+    print('\t'*2 +"---Made by Effortless Turtle---" + '\n' *3)
     start = input("<Enter> to continue / H for help / S for settings / Q to quit: ")
     time.sleep(.1)  #fixes a race condition
     choices = [ '', 'h','s','q']
