@@ -17,7 +17,7 @@ OVERALL Design Goals:
 
 -appropriate help messages
 
--command: coconutmonkey <target file tree> <recipient folder>
+-terminalcommand: coconutmonkey <target file tree> <recipient folder>
 
 -verbose and quiet thing (coconutmonkey {-v or -q} <target file tree> <recipient folder>)
 
