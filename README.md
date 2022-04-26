@@ -17,9 +17,9 @@ OVERALL Design Goals:
 
 -appropriate help messages
 
--command: coconutmonkey "<target file tree>" "<recipient folder>"
+-command: coconutmonkey <target file tree> <recipient folder>
 
--verbose and quiet thing (coconutmonkey {-v or -q} "<target file tree>" "<recipient folder>")
+-verbose and quiet thing (coconutmonkey {-v or -q} <target file tree> <recipient folder>)
 
 -Only works when tageting /home/ or C:/ folder when user inputs hardcoded password "IKnowWhatImDoing!!!"(to ensure the user doesn't
   activate by accident). Then displays an "are you sure you want to do this?" message before running. [I may not add this functionality to the
